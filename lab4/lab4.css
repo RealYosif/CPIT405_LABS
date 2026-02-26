@@ -1,0 +1,45 @@
+body {
+    background-color: #0b0b0b;
+    color: white;
+    font-family: sans-serif;
+    padding: 20px;
+}
+
+.lab-header, .form-container {
+    max-width: 600px;
+    margin: 0 auto 20px auto;
+}
+
+.form-container {
+    background-color: #f9f9f9;
+    color: black;
+    padding: 30px;
+}
+
+h2 {
+    text-align: center;
+    font-family: serif;
+}
+
+label {
+    display: block;
+    font-family: serif;
+    margin: 10px 0 5px 0;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+button {
+    width: 100%;
+    background-color: black;
+    color: white;
+    padding: 12px;
+    margin-top: 15px;
+    border: none;
+    cursor: pointer;
+}
