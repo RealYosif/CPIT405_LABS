@@ -1,0 +1,178 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Georgia, serif;
+  background-color: #f5f5f5;
+  color: #222;
+}
+
+.page {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem;
+}
+
+h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 0.4rem;
+}
+
+h2 {
+  font-size: 1.1rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 1.75rem;
+  color: #444;
+}
+
+/* Vote buttons */
+.vote-row {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.vote-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 36px;
+  font-size: 1.4rem;
+  font-weight: bold;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #ebebeb;
+  color: #222;
+  cursor: pointer;
+  min-width: 140px;
+  justify-content: center;
+  transition: background-color 0.15s, border-color 0.15s;
+}
+
+.vote-btn:hover {
+  background-color: #ddd;
+  border-color: #aaa;
+}
+
+.vote-btn.active-like {
+  background-color: #d4edda;
+  border-color: #5cb85c;
+  color: #2d6a2d;
+}
+
+.vote-btn.active-dislike {
+  background-color: #f8d7da;
+  border-color: #d9534f;
+  color: #7b1c1c;
+}
+
+.icon {
+  font-size: 1.3rem;
+}
+
+/* Notices */
+.notice {
+  text-align: center;
+  font-size: 0.85rem;
+  color: #666;
+  min-height: 20px;
+  margin-bottom: 0.4rem;
+}
+
+/* Divider */
+.divider {
+  border: none;
+  border-top: 1px solid #ddd;
+  margin: 1.5rem 0;
+}
+
+/* Section title */
+.section-title {
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 0.75rem;
+}
+
+/* Textarea */
+textarea {
+  width: 100%;
+  min-height: 130px;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #fff;
+  color: #222;
+  font-family: Georgia, serif;
+  font-size: 0.9rem;
+  resize: vertical;
+  margin-bottom: 0.4rem;
+}
+
+textarea:focus {
+  outline: none;
+  border-color: #888;
+}
+
+/* Button row */
+.btn-row {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.btn {
+  padding: 10px 28px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  border: 1px solid #aaa;
+  border-radius: 8px;
+  background-color: #555;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.15s;
+}
+
+.btn:hover {
+  background-color: #444;
+}
+
+.btn-primary {
+  background-color: #555;
+  color: #fff;
+  border-color: #555;
+}
+
+.btn-primary:hover {
+  background-color: #333;
+}
+
+/* Comments list */
+.comments-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.comment-card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.comment-meta {
+  font-size: 0.75rem;
+  color: #999;
+  margin-bottom: 4px;
+}

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lab 6 – Like or Dislike</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="page">
+    <h1>Lab 6</h1>
+    <h2>Like or dislike</h2>
+
+    <div class="vote-row">
+      <button class="vote-btn" id="likeBtn" onclick="vote('like')">
+        <span class="icon">👍</span>
+        <span id="likeCount">0</span>
+      </button>
+      <button class="vote-btn" id="dislikeBtn" onclick="vote('dislike')">
+        <span class="icon">👎</span>
+        <span id="dislikeCount">0</span>
+      </button>
+    </div>
+
+    <p class="notice" id="voteNotice"></p>
+
+    <hr class="divider" />
+
+    <p class="section-title">Comments</p>
+    <textarea id="commentInput" placeholder="Write a comment..."></textarea>
+    <p class="notice" id="commentNotice"></p>
+
+    <div class="btn-row">
+      <button class="btn btn-primary" onclick="submitComment()">Submit</button>
+      <button class="btn" onclick="clearInput()">Clear</button>
+    </div>
+
+    <div class="comments-list" id="commentsList"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
