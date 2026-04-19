@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact — Yousef Wajeeh</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <div class="brand">
+        <div class="brand-name">Yousef Wajeeh</div>
+        <div class="brand-title">IT Student | Web Developer</div>
+      </div>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="labs.html">Labs</a></li>
+          <li><a href="contact.html" class="active">Contact</a></li>
+        </ul>
+        <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
+          <span></span><span></span><span></span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="profile-img-wrapper">
+        <img src="https://media.licdn.com/dms/image/v2/D5603AQFwvEgXJlwRKA/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1718282112424?e=1777507200&v=beta&t=o0QDZRbJ8rS7_-CU7PYE6-q6k1Sx8vDliiveD3M-SJs" alt="Yousef Wajeeh" class="profile-img" />
+      </div>
+
+      <div class="sidebar-section-title">Contact Info</div>
+      <div class="info-box">
+        <p><strong>Email:</strong><br><a href="mailto:yousef.f.y.w@gmail.com">yousef.f.y.w@gmail.com</a></p>
+        <p><strong>Phone:</strong><br><a href="tel:+966540751426">+966540751426</a></p>
+        <div class="social-links">
+          <a href="https://github.com/realyosif" target="_blank" aria-label="GitHub" class="social-icon">
+            <img src="https://cdn-icons-png.flaticon.com/512/2111/2111432.png" alt="GitHub" width="22" height="22" style="border-radius:50%;" />
+          </a>
+          <a href="https://www.linkedin.com/in/yousef-wajeeh-598145270/" target="_blank" aria-label="LinkedIn" class="social-icon">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" alt="LinkedIn" width="22" height="22" style="border-radius:3px;" />
+          </a>
+        </div>
+      </div>
+    </aside>
+
+    <!-- CONTENT -->
+    <section class="content">
+      <article class="card">
+        <h2>Contact Me</h2>
+        <div class="section-divider"></div>
+
+        <!-- Web3Forms — replace YOUR_ACCESS_KEY with your actual key from web3forms.com -->
+        <form id="contactForm" action="https://api.web3forms.com/submit" method="POST" class="contact-form" novalidate>
+          <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE" />
+          <input type="hidden" name="subject" value="New message from Portfolio Contact Form" />
+          <input type="checkbox" name="botcheck" style="display:none;" />
+
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder="Your full name" required />
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="your@email.com" required />
+          </div>
+
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="5" placeholder="Write your message here..." required></textarea>
+          </div>
+
+          <div class="form-group">
+            <label class="radio-label">Message Type</label>
+            <div class="radio-group">
+              <label><input type="radio" name="message_type" value="Inquiry" checked /> Inquiry</label>
+              <label><input type="radio" name="message_type" value="Feedback" /> Feedback</label>
+            </div>
+          </div>
+
+          <button type="submit" class="btn-submit" id="submitBtn">Send Message</button>
+
+          <div id="formStatus" class="form-status" style="display:none;"></div>
+        </form>
+      </article>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2026 Yousef Wajeeh — CPIT 405 Portfolio</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
