@@ -1,0 +1,182 @@
+/* ── RESET ── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ── THEME VARIABLES ── */
+:root,
+[data-theme="light"] {
+  --bg:         #ffffff;
+  --surface:    #f5f5f5;
+  --border:     #d9d9d9;
+  --text:       #111111;
+  --muted:      #888888;
+  --btn-bg:     #ffffff;
+  --btn-border: #bbbbbb;
+  --btn-text:   #333333;
+  --btn-hover-bg:     #111111;
+  --btn-hover-text:   #ffffff;
+  --btn-hover-border: #111111;
+  --nav-bg:     #ffffff;
+  --nav-border: #e0e0e0;
+}
+
+[data-theme="dark"] {
+  --bg:         #111111;
+  --surface:    #1a1a1a;
+  --border:     #2a2a2a;
+  --text:       #f0f0f0;
+  --muted:      #666666;
+  --btn-bg:     #1a1a1a;
+  --btn-border: #444444;
+  --btn-text:   #cccccc;
+  --btn-hover-bg:     #f0f0f0;
+  --btn-hover-text:   #111111;
+  --btn-hover-border: #f0f0f0;
+  --nav-bg:     #111111;
+  --nav-border: #2a2a2a;
+}
+
+/* ── GLOBAL ── */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 14px;
+  background: var(--bg);
+  color: var(--text);
+  transition: background 0.25s, color 0.25s;
+}
+
+/* ── NAVBAR ── */
+.navbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: var(--nav-bg);
+  border-bottom: 1px solid var(--nav-border);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  flex-wrap: wrap;
+}
+
+.nav-brand {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  white-space: nowrap;
+  margin-right: 4px;
+}
+
+.search-input {
+  font-size: 13px;
+  padding: 5px 10px;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  background: var(--surface);
+  color: var(--text);
+  outline: none;
+  width: 180px;
+  transition: border-color 0.15s;
+}
+
+.search-input:focus {
+  border-color: var(--text);
+}
+
+/* ── BUTTONS ── */
+.btn-group {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  font-size: 12px;
+  padding: 5px 12px;
+  background: var(--btn-bg);
+  color: var(--btn-text);
+  border: 1px solid var(--btn-border);
+  border-radius: 3px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.btn:hover {
+  background: var(--btn-hover-bg);
+  color: var(--btn-hover-text);
+  border-color: var(--btn-hover-border);
+}
+
+.btn:active {
+  opacity: 0.8;
+}
+
+/* dark toggle */
+.dark-btn {
+  margin-left: auto;
+  font-size: 16px;
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 4px 8px;
+  cursor: pointer;
+  line-height: 1;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.dark-btn:hover {
+  background: var(--surface);
+}
+
+/* ── MAIN / GALLERY ── */
+main {
+  padding: 16px;
+}
+
+.gallery {
+  columns: 4 220px;
+  column-gap: 12px;
+}
+
+.photo-card {
+  break-inside: avoid;
+  margin-bottom: 12px;
+  overflow: hidden;
+  border-radius: 4px;
+  cursor: pointer;
+  animation: fadeIn 0.35s ease both;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.photo-card img {
+  width: 100%;
+  display: block;
+  border-radius: 4px;
+  transition: opacity 0.2s;
+}
+
+.photo-card img:hover {
+  opacity: 0.9;
+}
+
+/* ── STATUS ── */
+.status {
+  font-size: 12px;
+  color: var(--muted);
+  padding: 8px 0;
+  min-height: 20px;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 600px) {
+  .gallery { columns: 2 140px; }
+  .search-input { width: 130px; }
+}

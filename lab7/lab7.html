@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Unsplash API</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <span class="nav-brand">Unsplash API</span>
+
+    <input
+      type="text"
+      id="search-input"
+      class="search-input"
+      placeholder="Search…"
+      value="Makkah"
+    />
+
+    <div class="btn-group">
+      <button id="btn-xhr"   class="btn">Search using XHR</button>
+      <button id="btn-fetch" class="btn">Search using fetch (promises)</button>
+      <button id="btn-async" class="btn">Search using fetch (async/await)</button>
+    </div>
+
+    <button id="dark-toggle" class="dark-btn" title="Toggle dark mode">🌙</button>
+  </nav>
+
+  <!-- GALLERY -->
+  <main>
+    <div id="gallery" class="gallery"></div>
+    <p id="status" class="status"></p>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
