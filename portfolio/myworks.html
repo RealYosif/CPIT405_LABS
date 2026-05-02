@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Works — Yousef Wajeeh</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <div class="brand">
+        <div class="brand-name">Yousef Wajeeh</div>
+        <div class="brand-title">IT Student | Web Developer</div>
+      </div>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="labs.html">Labs</a></li>
+          <li><a href="myworks.html" class="active">My Works</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
+          <span></span><span></span><span></span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="profile-img-wrapper">
+        <img src="https://media.licdn.com/dms/image/v2/D5603AQFwvEgXJlwRKA/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1718282112424?e=1777507200&v=beta&t=o0QDZRbJ8rS7_-CU7PYE6-q6k1Sx8vDliiveD3M-SJs" alt="Yousef Wajeeh" class="profile-img" />
+      </div>
+
+      <div class="sidebar-section-title">Quick Links</div>
+      <div class="sidebar-nav">
+        <a href="#my-works">My Works</a>
+      </div>
+
+      <div class="sidebar-section-title" style="margin-top:1.5rem;">Portfolio Links</div>
+      <div class="sidebar-nav">
+        <a href="index.html">View CV Page</a>
+        <a href="labs.html">View Labs</a>
+        <a href="contact.html">Open Contact Page</a>
+        <a href="https://github.com/realyosif" target="_blank">GitHub Profile</a>
+      </div>
+    </aside>
+
+    <!-- CONTENT -->
+    <section class="content">
+
+      <article id="my-works" class="card">
+        <h2>My Works</h2>
+        <div class="section-divider"></div>
+
+        <div class="works-grid">
+
+          <!-- App 1 -->
+          <div class="work-card">
+            <div class="work-badge">JavaScript</div>
+            <h3>To-Do List App</h3>
+            <p>An interactive to-do list built with vanilla JavaScript. Tasks are saved in the browser using localStorage so they persist between visits.</p>
+            <a href="app1.html" class="btn-open">Open App →</a>
+          </div>
+
+          <!-- App 2 -->
+          <div class="work-card">
+            <div class="work-badge work-badge-api">JavaScript + API</div>
+            <h3>Country Explorer</h3>
+            <p>Search and explore countries using the REST Countries public API. Displays flag, capital, region, and population for each result.</p>
+            <a href="app2.html" class="btn-open">Open App →</a>
+          </div>
+
+        </div>
+      </article>
+
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2026 Yousef Wajeeh — CPIT 405 Portfolio</p>
+  </footer>
+
+  <script src="script.js"></script>
+
+  <style>
+    .works-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.25rem;
+    }
+    .work-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: .6rem;
+      transition: box-shadow var(--transition), border-color var(--transition);
+    }
+    .work-card:hover {
+      box-shadow: 0 4px 14px rgba(46,134,222,.15);
+      border-color: var(--accent);
+    }
+    .work-badge {
+      display: inline-block;
+      background: #eaf3fc;
+      color: var(--accent);
+      border: 1px solid #c0dcf4;
+      border-radius: 20px;
+      padding: .15rem .65rem;
+      font-size: .72rem;
+      font-weight: 600;
+      width: fit-content;
+    }
+    .work-badge-api {
+      background: #d4f4e2;
+      color: var(--done);
+      border-color: #a8e6c1;
+    }
+    .work-card h3 {
+      font-size: 1rem;
+      color: var(--navy);
+      font-weight: 700;
+    }
+    .work-card p {
+      font-size: .84rem;
+      color: var(--text-light);
+      flex: 1;
+      margin: 0;
+    }
+    .btn-open {
+      display: block;
+      text-align: center;
+      background: var(--navy);
+      color: var(--white);
+      padding: .55rem 1rem;
+      border-radius: var(--radius);
+      font-size: .85rem;
+      font-weight: 600;
+      margin-top: .4rem;
+      transition: background var(--transition);
+    }
+    .btn-open:hover {
+      background: var(--accent);
+      text-decoration: none;
+      color: var(--white);
+    }
+  </style>
+</body>
+</html>

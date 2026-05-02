@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>To-Do List — Yousef Wajeeh</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ── TO-DO APP STYLES ── */
+    .todo-input-row {
+      display: flex;
+      gap: .6rem;
+      margin-bottom: 1.1rem;
+    }
+    .todo-input-row input[type="text"] {
+      flex: 1;
+      padding: .55rem .85rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      font-size: .9rem;
+      font-family: inherit;
+      color: var(--text);
+      background: var(--white);
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .todo-input-row input[type="text"]:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(46,134,222,.15);
+    }
+    .btn-add {
+      background: var(--navy);
+      color: var(--white);
+      border: none;
+      border-radius: var(--radius);
+      padding: .55rem 1.2rem;
+      font-size: .88rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background .2s;
+      white-space: nowrap;
+    }
+    .btn-add:hover { background: var(--accent); }
+
+    .todo-list {
+      display: flex;
+      flex-direction: column;
+      gap: .5rem;
+      min-height: 60px;
+    }
+
+    .todo-item {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      padding: .65rem .9rem;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      transition: background .15s, border-color .15s;
+    }
+    .todo-item:hover { border-color: var(--accent); }
+
+    .todo-item input[type="checkbox"] {
+      accent-color: var(--accent);
+      width: 17px;
+      height: 17px;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    .todo-item label {
+      flex: 1;
+      font-size: .88rem;
+      color: var(--text);
+      cursor: pointer;
+      transition: color .15s, text-decoration .15s;
+    }
+    .todo-item.done label {
+      text-decoration: line-through;
+      color: var(--text-light);
+    }
+    .todo-item.done { background: #f8fffe; }
+
+    .btn-delete {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #c0392b;
+      font-size: 1.05rem;
+      padding: .1rem .3rem;
+      border-radius: 3px;
+      line-height: 1;
+      transition: background .15s;
+      flex-shrink: 0;
+    }
+    .btn-delete:hover { background: #fde8e8; }
+
+    .todo-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: .9rem;
+      font-size: .8rem;
+      color: var(--text-light);
+    }
+    .btn-clear {
+      background: none;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: .25rem .75rem;
+      font-size: .78rem;
+      cursor: pointer;
+      color: var(--text-light);
+      transition: border-color .15s, color .15s;
+    }
+    .btn-clear:hover { border-color: #c0392b; color: #c0392b; }
+
+    .todo-empty {
+      text-align: center;
+      color: var(--text-light);
+      font-size: .85rem;
+      padding: 1.5rem 0;
+      font-style: italic;
+    }
+
+    /* Sidebar about box */
+    .about-box {
+      width: 100%;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem;
+      font-size: .82rem;
+      color: var(--text);
+      text-align: center;
+    }
+    .about-box h3 {
+      font-size: .95rem;
+      color: var(--navy);
+      margin-bottom: .5rem;
+      font-weight: 700;
+    }
+    .about-box p { margin-bottom: .5rem; color: var(--text-light); line-height: 1.6; }
+    .about-box strong { color: var(--text); }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <div class="brand">
+        <div class="brand-name">Yousef Wajeeh</div>
+        <div class="brand-title">IT Student | Web Developer</div>
+      </div>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="labs.html">Labs</a></li>
+          <li><a href="myworks.html">My Works</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
+          <span></span><span></span><span></span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="about-box">
+        <h3>About This App</h3>
+        <p>A simple To-Do List app built with HTML, CSS, and JavaScript.</p>
+        <p>Your tasks are saved in your browser using <strong>localStorage</strong> — they will still be here when you come back.</p>
+      </div>
+
+      <div class="sidebar-section-title">Portfolio Links</div>
+      <div class="sidebar-nav">
+        <a href="myworks.html">← My Works</a>
+        <a href="app2.html">View App 2</a>
+      </div>
+    </aside>
+
+    <!-- CONTENT -->
+    <section class="content">
+      <article class="card">
+        <h2>To-Do List</h2>
+        <div class="section-divider"></div>
+
+        <div class="todo-input-row">
+          <input type="text" id="taskInput" placeholder="Add a new task..." maxlength="200" />
+          <button class="btn-add" id="addBtn">Add</button>
+        </div>
+
+        <div class="todo-list" id="todoList">
+          <!-- tasks rendered by JS -->
+        </div>
+
+        <div class="todo-footer">
+          <span id="todoCount">0 of 0 completed</span>
+          <button class="btn-clear" id="clearDone">Clear completed</button>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2026 Yousef Wajeeh — CPIT 405 Portfolio</p>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    /* ── TO-DO LIST APP ── */
+    (function () {
+      const STORAGE_KEY = 'yousef_todos';
+      let tasks = [];
+
+      // Load from localStorage
+      try {
+        const saved = localStorage.getItem(STORAGE_KEY);
+        if (saved) tasks = JSON.parse(saved);
+      } catch (e) { tasks = []; }
+
+      const listEl   = document.getElementById('todoList');
+      const input    = document.getElementById('taskInput');
+      const addBtn   = document.getElementById('addBtn');
+      const countEl  = document.getElementById('todoCount');
+      const clearBtn = document.getElementById('clearDone');
+
+      function save() {
+        try { localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks)); } catch (e) {}
+      }
+
+      function render() {
+        listEl.innerHTML = '';
+
+        if (tasks.length === 0) {
+          listEl.innerHTML = '<p class="todo-empty">No tasks yet. Add one above!</p>';
+        } else {
+          tasks.forEach(function (task, idx) {
+            const item = document.createElement('div');
+            item.className = 'todo-item' + (task.done ? ' done' : '');
+
+            const cb = document.createElement('input');
+            cb.type = 'checkbox';
+            cb.id = 'task_' + idx;
+            cb.checked = task.done;
+            cb.addEventListener('change', function () {
+              tasks[idx].done = cb.checked;
+              save();
+              render();
+            });
+
+            const lbl = document.createElement('label');
+            lbl.htmlFor = 'task_' + idx;
+            lbl.textContent = task.text;
+
+            const del = document.createElement('button');
+            del.className = 'btn-delete';
+            del.innerHTML = '&#x2715;';
+            del.setAttribute('aria-label', 'Delete task');
+            del.addEventListener('click', function () {
+              tasks.splice(idx, 1);
+              save();
+              render();
+            });
+
+            item.appendChild(cb);
+            item.appendChild(lbl);
+            item.appendChild(del);
+            listEl.appendChild(item);
+          });
+        }
+
+        const done  = tasks.filter(function (t) { return t.done; }).length;
+        countEl.textContent = done + ' of ' + tasks.length + ' completed';
+      }
+
+      function addTask() {
+        const text = input.value.trim();
+        if (!text) return;
+        tasks.push({ text: text, done: false });
+        input.value = '';
+        save();
+        render();
+        input.focus();
+      }
+
+      addBtn.addEventListener('click', addTask);
+      input.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') addTask();
+      });
+
+      clearBtn.addEventListener('click', function () {
+        tasks = tasks.filter(function (t) { return !t.done; });
+        save();
+        render();
+      });
+
+      render();
+    })();
+  </script>
+</body>
+</html>

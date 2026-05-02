@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Country Explorer — Yousef Wajeeh</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ── COUNTRY EXPLORER STYLES ── */
+    .search-row {
+      display: flex;
+      gap: .6rem;
+      margin-bottom: 1rem;
+    }
+    .search-row input[type="text"] {
+      flex: 1;
+      padding: .55rem .85rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      font-size: .9rem;
+      font-family: inherit;
+      color: var(--text);
+      background: var(--white);
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .search-row input[type="text"]:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(46,134,222,.15);
+    }
+    .btn-search {
+      background: var(--navy);
+      color: var(--white);
+      border: none;
+      border-radius: var(--radius);
+      padding: .55rem 1.3rem;
+      font-size: .88rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background .2s;
+      white-space: nowrap;
+    }
+    .btn-search:hover { background: var(--accent); }
+    .btn-search:disabled { opacity: .6; cursor: not-allowed; }
+
+    .result-count {
+      font-size: .8rem;
+      color: var(--text-light);
+      margin-bottom: .9rem;
+    }
+
+    .countries-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
+      gap: 1rem;
+    }
+
+    .country-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      text-align: center;
+      transition: box-shadow .2s, border-color .2s;
+    }
+    .country-card:hover {
+      box-shadow: 0 4px 14px rgba(46,134,222,.15);
+      border-color: var(--accent);
+    }
+    .country-flag {
+      width: 100%;
+      height: 90px;
+      object-fit: cover;
+      display: block;
+      background: var(--bg);
+    }
+    .country-info {
+      padding: .7rem .6rem;
+    }
+    .country-name {
+      font-size: .88rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: .45rem;
+    }
+    .country-detail {
+      font-size: .76rem;
+      color: var(--text-light);
+      display: flex;
+      align-items: center;
+      gap: .3rem;
+      justify-content: center;
+      margin-bottom: .2rem;
+    }
+
+    .state-msg {
+      text-align: center;
+      color: var(--text-light);
+      font-size: .88rem;
+      padding: 2rem 0;
+      font-style: italic;
+    }
+    .state-msg.error { color: #c0392b; font-style: normal; }
+
+    /* Spinner */
+    .spinner {
+      width: 28px; height: 28px;
+      border: 3px solid var(--border);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin .7s linear infinite;
+      margin: 2rem auto;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* Sidebar about box */
+    .about-box {
+      width: 100%;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem;
+      font-size: .82rem;
+      color: var(--text);
+      text-align: center;
+    }
+    .about-box h3 {
+      font-size: .95rem;
+      color: var(--navy);
+      margin-bottom: .5rem;
+      font-weight: 700;
+    }
+    .about-box p { margin-bottom: .5rem; color: var(--text-light); line-height: 1.6; }
+    .about-box a { color: var(--accent); }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <div class="brand">
+        <div class="brand-name">Yousef Wajeeh</div>
+        <div class="brand-title">IT Student | Web Developer</div>
+      </div>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="labs.html">Labs</a></li>
+          <li><a href="myworks.html">My Works</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
+          <span></span><span></span><span></span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="about-box">
+        <h3>About This App</h3>
+        <p>Search and explore countries using the <strong>REST Countries API</strong>.</p>
+        <p>Data is fetched live from:<br><a href="https://restcountries.com" target="_blank">restcountries.com</a></p>
+      </div>
+
+      <div class="sidebar-section-title">Portfolio Links</div>
+      <div class="sidebar-nav">
+        <a href="myworks.html">← My Works</a>
+        <a href="app1.html">View App 1</a>
+      </div>
+    </aside>
+
+    <!-- CONTENT -->
+    <section class="content">
+      <article class="card">
+        <h2>Country Explorer</h2>
+        <div class="section-divider"></div>
+
+        <div class="search-row">
+          <input type="text" id="searchInput" placeholder="Search for a country..." />
+          <button class="btn-search" id="searchBtn">Search</button>
+        </div>
+
+        <div id="resultCount" class="result-count" style="display:none;"></div>
+        <div id="output">
+          <p class="state-msg">Type a country name above and press Search.</p>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2026 Yousef Wajeeh — CPIT 405 Portfolio</p>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    /* ── COUNTRY EXPLORER APP ── */
+    (function () {
+      const searchInput = document.getElementById('searchInput');
+      const searchBtn   = document.getElementById('searchBtn');
+      const output      = document.getElementById('output');
+      const resultCount = document.getElementById('resultCount');
+
+      function setLoading() {
+        resultCount.style.display = 'none';
+        output.innerHTML = '<div class="spinner"></div>';
+        searchBtn.disabled = true;
+      }
+
+      function setError(msg) {
+        resultCount.style.display = 'none';
+        output.innerHTML = '<p class="state-msg error">' + msg + '</p>';
+        searchBtn.disabled = false;
+      }
+
+      function renderCountries(countries) {
+        searchBtn.disabled = false;
+
+        if (!countries || countries.length === 0) {
+          resultCount.style.display = 'none';
+          output.innerHTML = '<p class="state-msg">No countries found. Try a different name.</p>';
+          return;
+        }
+
+        resultCount.textContent = countries.length + ' result' + (countries.length !== 1 ? 's' : '') + ' found';
+        resultCount.style.display = 'block';
+
+        const grid = document.createElement('div');
+        grid.className = 'countries-grid';
+
+        countries.forEach(function (c) {
+          const name       = c.name && c.name.common ? c.name.common : 'N/A';
+          const flag       = c.flags && c.flags.png ? c.flags.png : '';
+          const flagAlt    = c.flags && c.flags.alt ? c.flags.alt : name + ' flag';
+          const capital    = c.capital && c.capital.length ? c.capital[0] : 'N/A';
+          const region     = c.region || 'N/A';
+          const population = c.population ? c.population.toLocaleString() : 'N/A';
+          const languages  = c.languages ? Object.values(c.languages).slice(0, 2).join(', ') : 'N/A';
+
+          const card = document.createElement('div');
+          card.className = 'country-card';
+          card.innerHTML =
+            '<img class="country-flag" src="' + flag + '" alt="' + flagAlt + '" loading="lazy" />' +
+            '<div class="country-info">' +
+              '<div class="country-name">' + name + '</div>' +
+              '<div class="country-detail">🏛️ ' + capital + '</div>' +
+              '<div class="country-detail">🌍 ' + region + '</div>' +
+              '<div class="country-detail">👥 ' + population + '</div>' +
+              '<div class="country-detail">🗣️ ' + languages + '</div>' +
+            '</div>';
+
+          grid.appendChild(card);
+        });
+
+        output.innerHTML = '';
+        output.appendChild(grid);
+      }
+
+      function doSearch() {
+        const query = searchInput.value.trim();
+        if (!query) {
+          searchInput.focus();
+          return;
+        }
+
+        setLoading();
+
+        fetch('https://restcountries.com/v3.1/name/' + encodeURIComponent(query))
+          .then(function (res) {
+            if (res.status === 404) return [];
+            if (!res.ok) throw new Error('HTTP ' + res.status);
+            return res.json();
+          })
+          .then(renderCountries)
+          .catch(function (err) {
+            setError('Failed to fetch data. Please check your connection and try again.');
+          });
+      }
+
+      searchBtn.addEventListener('click', doSearch);
+      searchInput.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') doSearch();
+      });
+    })();
+  </script>
+</body>
+</html>
